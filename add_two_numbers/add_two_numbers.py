@@ -1,20 +1,20 @@
-class Node(object):
-    def __init__(self, data=None, next_node=None):
-        self.data=data
-        self.next_node = next_node
+class ListNode(object):
+    def __init__(self, val=None, next=None):
+        self.val=val
+        self.next = next
 
     def __str__(self):
         string = ""
         node = self
         while not node == None:
-            string += str(node.data)
+            string += str(node.val)
             string += " -> "
-            node = node.next_node
+            node = node.next
         string = "(" + string[:-4] + ")"
         return string
 
 class Solution(object):
-    def add_two_numbers(self, l1, l2, carry=False):
+    def addTwoNumbers(self, l1, l2, carry=False):
         """
         :type l1: ListNode
         :type l2: ListNode
@@ -42,13 +42,13 @@ class Solution(object):
                 return None
         elif node1 == None:
             num1 = 0
-            num2 = node2.data
+            num2 = node2.val
         elif node2 == None:
-            num1 = node1.data
+            num1 = node1.val
             num2 = 0
         else:
-            num1 = node1.data
-            num2 = node2.data
+            num1 = node1.val
+            num2 = node2.val
 
         num_sum = num1 + num2
 
@@ -63,11 +63,11 @@ class Solution(object):
             carry = False
 
         num_sum = num_sum % 10
-        new_l1 = node1.next_node
-        new_l2 = node2.next_node
+        new_l1 = node1.next
+        new_l2 = node2.next
 
 
-        new_node = Node(num_sum, self.add_two_numbers(new_l1, new_l2, carry))
+        new_node = ListNode(num_sum, self.addTwoNumbers(new_l1, new_l2, carry))
 
         return new_node
 
@@ -75,9 +75,9 @@ class Solution(object):
 
 
 sol = Solution()
-l1 = Node(2, Node(4, Node(3, None)))
-l2 = Node(5, Node(6, Node(4, None)))
+l1 = ListNode(2, ListNode(4, ListNode(3, None)))
+l2 = ListNode(5, ListNode(6, ListNode(4, None)))
 
-sum_list = sol.add_two_numbers(l1, l2)
+sum_list = sol.addTwoNumbers(l1, l2)
 
 print(sum_list)
