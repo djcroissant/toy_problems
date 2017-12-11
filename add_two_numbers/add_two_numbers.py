@@ -1,6 +1,6 @@
 class ListNode(object):
     def __init__(self, val=None, next=None):
-        self.val=val
+        self.val = val
         self.next = next
 
     def __str__(self):
@@ -24,22 +24,24 @@ class Solution(object):
             * l1 and l2 are non-empty
             * numbers are non-negative
             * digits stored in reverse order
+            * l1 and l2 can be different lengths
 
         Test Case:
             Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
             Output: (7 -> 0 -> 8)
             Explanation: 342 + 465 = 807
         """
+        # Redefineing from LeetCode for clarity
         node1 = l1
         node2 = l2
 
-        if node1 == None and node2 == None:
+        if node1 == None and node2 == None and carry == False:
             # Catch base case for recursive call
-            if carry == True:
-                num1 = 0
-                num2 = 0
-            else:
-                return None
+            return None
+        elif node1 == None and node2 == None:
+            # carry must be True
+            num1 = 0
+            num2 = 0
         elif node1 == None:
             num1 = 0
             num2 = node2.val
@@ -63,11 +65,11 @@ class Solution(object):
             carry = False
 
         num_sum = num_sum % 10
-        new_l1 = node1.next
-        new_l2 = node2.next
 
-
-        new_node = ListNode(num_sum, self.addTwoNumbers(new_l1, new_l2, carry))
+        new_node = ListNode(
+            num_sum,
+            self.addTwoNumbers(node1.next, node2.next, carry)
+        )
 
         return new_node
 
