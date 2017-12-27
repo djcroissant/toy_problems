@@ -46,7 +46,7 @@ class Solution(object):
             flag = -1
             num_in *= -1
 
-        num_out = int(str(num_in)[::-1].lstrip("0")) * flag
+        num_out = int(str(num_in)[::-1] * flag
 
         if abs(num_out) > 2**32 / 2 - 1:
             return 0
