@@ -26,6 +26,8 @@ class Solution():
             if c in open:
                 open_sequence.append(c)
             elif c in close:
+                if open_sequence == []:
+                    return False
                 opener = open_sequence.pop()
                 open_index = open.index(opener)
                 close_index = close.index(c)
@@ -34,9 +36,13 @@ class Solution():
 
         if not open_sequence:
             return True
+        else:
+            return False
 
 # Testing:
 sol = Solution()
 print(sol.valid_parentheses('()[]{}'))
 print(sol.valid_parentheses('([)]'))
 print(sol.valid_parentheses('(]'))
+print(sol.valid_parentheses(']'))
+print(sol.valid_parentheses('['))
