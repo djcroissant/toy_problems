@@ -14,7 +14,7 @@ class Codec(object):
         c = lambda: characters[random.randrange(len(characters))]
         code=c()+c()+c()+c()+c()+c()
         self.HASHINDEX[code] = longUrl
-        return "http://tinyurl.com" + code
+        return "http://tinyurl.com/" + code
 
     def decode(self, shortUrl):
         """
